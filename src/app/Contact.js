@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Contact = ({ closePopup }) => {
 
   const [isChecked, setIsChecked] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    address: '',
-    email: '',
-    questionComment: '',
-    phone: ''
+    fullName: "",
+    address: "",
+    email: "",
+    questionComment: "",
+    phone: ""
   });
 
   const handleCheckboxChange = (e) => {
@@ -27,25 +27,25 @@ const Contact = ({ closePopup }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-        setStatus('pending');
+        setStatus("pending");
         setError(null);
         const myForm = event.target;
         const formData = new FormData(myForm);
-        const res = await fetch('/contact.html', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        const res = await fetch("/contact.html", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams(formData).toString()
         });
         if (res.ok) {
-            setStatus('ok');
+            setStatus("ok");
             myForm.reset();
             closePopup();
         } else {
-            setStatus('error');
+            setStatus("error");
             setError(`${res.status} ${res.statusText}`);
         }
     } catch (e) {
-        setStatus('error');
+        setStatus("error");
         setError(`${e}`);
     }
   };
@@ -53,8 +53,8 @@ const Contact = ({ closePopup }) => {
   return (
     <div className="font-sans fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-gray-900 bg-opacity-90 w-full h-full flex items-center justify-center overflow-y-auto">
       <div className="p-4 sm:p-8 rounded-lg shadow-lg h-auto w-full max-w-sm sm:max-w-md relative bg-gray-800">
-        <form name="contact" className="bg-gray-900 p-4 text-white rounded-md text-sm" method='POST' data-netlify="true" onSubmit={handleFormSubmit}>
-          <input type='hidden' name='form-name' value='contact' />
+        <form name="contact" className="bg-gray-900 p-4 text-white rounded-md text-sm" method="POST" data-netlify="true" onSubmit={handleFormSubmit}>
+          <input type="hidden" name="form-name" value="contact" />
           <button
             onClick={closePopup}
             className="absolute right-5 top-5 text-gray-400 p-4 hover:text-gray-300 focus:outline-none"
@@ -62,7 +62,7 @@ const Contact = ({ closePopup }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="stroke-current shrink-0 h-8 w-8"
-              fill='none'
+              fill="none"
               viewBox="0 0 24 24"
             >
               <path
@@ -74,7 +74,7 @@ const Contact = ({ closePopup }) => {
             </svg>
           </button>
           <h1 className="text-2xl font-bold text-white text-center mb-2">Contact Us</h1>
-          <p className="max-w-xl mx-auto text-md text-gray-400 mb-2">Please leave us a message below, and we'll get back to you promptly.</p>
+          <p className="max-w-xl mx-auto text-md text-gray-400 mb-2">Please leave us a message below, and we"ll get back to you promptly.</p>
           <input type="hidden" name="form-name" value="contact" />
           <input
             type="text"
@@ -132,13 +132,13 @@ const Contact = ({ closePopup }) => {
               required
             />
             <span className="ml-2">
-              By submitting this form you agree to the terms of the{' '}
+              By submitting this form you agree to the terms of the{" "}
               <a href="/privacy-policy" className="text-gray-400 font-bold hover:underline">Privacy Policy</a>.
             </span>
           </label>
           <button
             type="submit"
-            className={`mt-2 min-w-full bg-gray-600 text-white py-2 px-2 rounded-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ${isChecked ? '' : 'opacity-50 cursor-not-allowed'}`}
+            className={`mt-2 min-w-full bg-gray-600 text-white py-2 px-2 rounded-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ${isChecked ? "" : "opacity-50 cursor-not-allowed"}`}
             disabled={!isChecked}
           >
             Submit
