@@ -74,7 +74,7 @@ const Contact = ({ closePopup }) => {
             </svg>
           </button>
           <h1 className="text-2xl font-bold text-white text-center mb-2">Contact Us</h1>
-          <p className="max-w-xl mx-auto text-md text-gray-400 mb-2">Please leave us a message below, and we"ll get back to you promptly.</p>
+          <p className="max-w-xl mx-auto text-md text-gray-400 mb-2">Please leave us a message below, and we will get back to you promptly.</p>
           <input type="hidden" name="form-name" value="contact" />
           <input
             type="text"
