@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import Contact from './Contact';
 
 const Header = () => {
-
   const router = useRouter();
   const [activeLink, setActiveLink] = useState(router.pathname);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,9 +41,9 @@ const Header = () => {
       <nav className="container mx-auto flex justify-between items-center flex-wrap">
         <Link href="/">
           <div className="flex items-center cursor-pointer hover:opacity-80">
-            <img src="logo.jpeg" alt="Logo" className="h-24 w-24 rounded-full" />
+            <img src="logo.jpeg" alt="Logo" className="h-12 w-12 md:h-24 md:w-24 rounded-full" />
             <div className="text-start ml-4">
-              <span className="font-bold text-3xl text-fourth block letter-spacing-wider">Ethio X-change</span>
+              <span className="font-bold text-xl md:text-3xl text-fourth block letter-spacing-wider">Ethio X-change</span>
             </div>
           </div>
         </Link>
@@ -55,27 +54,27 @@ const Header = () => {
             </svg>
           </button>
         </div>
-        <div className={`rounded-full text-md font-semibold space-y-2 md:space-x-3 ${menuOpen ? 'block bg-primary' : 'hidden md:block bg-secondary'}`}>
-          {navLinks.map(({ path, label }) => (
-            <Link key={path} href={path}>
-              <span
-                className={`nav-link block md:inline-block px-2 py-2 md:px-4 md:py-2 hover:opacity-70 ${activeLink === path ? 'active-nav-link' : ''} text-sm md:text-lg`}
-                onClick={() => {handleSetActiveLink(path); setMenuOpen(false);}}
-              >
-                {label}
-              </span>
-            </Link>
-          ))}
-          {/* Contact Us button */}
-          <button
-            onClick={() => {setShowContact(true); setMenuOpen(false);}}
-            className="nav-link text-gray-300 px-2 py-2 text-sm md:text-lg hover:opacity-70"
-          >
-            Contact Us
-          </button>
+        <div className={`w-full md:flex md:items-center md:w-auto ${menuOpen ? 'block' : 'hidden'}`}>
+          <div className="bg-primary md:bg-transparent md:flex md:space-x-4 rounded-lg p-4 md:p-0">
+            {navLinks.map(({ path, label }) => (
+              <Link key={path} href={path}>
+                <span
+                  className={`block px-4 py-2 rounded-md md:inline-block md:px-0 md:py-0 hover:bg-secondary hover:text-white ${activeLink === path ? 'bg-secondary text-white' : ''}`}
+                  onClick={() => handleSetActiveLink(path)}
+                >
+                  {label}
+                </span>
+              </Link>
+            ))}
+            <button
+              onClick={() => { setShowContact(true); setMenuOpen(false); }}
+              className="block px-4 py-2 rounded-md md:inline-block md:px-0 md:py-0 hover:bg-secondary hover:text-white"
+            >
+              Contact Us
+            </button>
+          </div>
         </div>
       </nav>
-      {/* Contact popup */}
       {showContact && <Contact closePopup={() => setShowContact(false)} />}
     </header>
   );

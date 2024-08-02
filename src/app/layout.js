@@ -6,13 +6,13 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body>
-            <div className={`min-h-screen flex flex-col font-sans`}>
-            <Header />
-            <div className="mt-10">
-               {children} 
-            </div>
-            <Footer />
-            </div>
+                <div className="min-h-screen flex flex-col font-sans bg-black">
+                    <Header className="z-50" /> {/* Increased z-index */}
+                    <div className="mt-10 flex-grow">
+                        {children}
+                    </div>
+                    <Footer />
+                </div>
             </body>
         </html>
     );

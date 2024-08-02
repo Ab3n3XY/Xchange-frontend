@@ -29,8 +29,8 @@ export default function HomePage() {
     const currencies = ['USD', 'GBP', 'EUR', 'AED', 'CAD']; // Example currencies
 
     return (
-        <div className="container mx-auto mt-20">
-            <div className="mb-8">
+        <div className="container mx-auto mt-20 ">
+            <div className="mb-8 -z-0">
                 <div className="flex items-center justify-end space-x-4 bg-none p-4 rounded-lg">
                     <DatePicker
                         selected={selectedDate}

@@ -18,31 +18,31 @@ const CurrencyTable = ({ currency, rates = [] }) => {
   };
 
   return (
-    <div className="w-full p-4 mx-2 bg-gray-800 rounded-lg shadow-lg">
-      <div className="flex items-center mb-4">
-        <Flag country={countryCodes[currency]} className="mr-3" style={{ width: '40px', height: '30px' }} />
-        <h2 className="text-2xl font-bold text-purple-300">{currency}</h2>
+    <div className="w-full p-2 md:p-4 mx-2 bg-gray-800 rounded-lg shadow-lg">
+      <div className="flex items-center mb-2 md:mb-4">
+        <Flag country={countryCodes[currency]} className="mr-2 md:mr-3" style={{ width: '30px', height: '20px' }} />
+        <h2 className="text-xl md:text-2xl font-bold text-purple-300">{currency}</h2>
       </div>
       <table className="table-auto w-full border border-gray-600 rounded-md bg-gray-900 text-gray-300">
         <thead>
-          <tr className="bg-gray-700">
-            <th className="px-4 py-2">Bank</th>
-            <th className="px-4 py-2">Buying</th>
-            <th className="px-4 py-2">Selling</th>
+          <tr className="bg-gray-700 text-sm md:text-base">
+            <th className="px-2 py-1 md:px-4 md:py-2">Bank</th>
+            <th className="px-2 py-1 md:px-4 md:py-2">Buying</th>
+            <th className="px-2 py-1 md:px-4 md:py-2">Selling</th>
           </tr>
         </thead>
         <tbody>
           {sortedRates.map(rate => (
-            <tr key={rate.id} className="border-b ">
-              <td className="px-4 py-2">
+            <tr key={rate.id} className="border-b text-sm md:text-base">
+              <td className="px-2 py-1 md:px-4 md:py-2">
                 {abbreviateBankName(rate.bank.name)}
               </td>
-              <td className="px-4 py-2 text-green-400">
-                <FontAwesomeIcon icon="dollar-sign" className="mr-2" />
+              <td className="px-2 py-1 md:px-4 md:py-2 text-green-400">
+                <FontAwesomeIcon icon="dollar-sign" className="mr-1 md:mr-2" />
                 {rate.buying_rate}
               </td>
-              <td className="px-4 py-2 text-red-400">
-                <FontAwesomeIcon icon="dollar-sign" className="mr-2" />
+              <td className="px-2 py-1 md:px-4 md:py-2 text-red-400">
+                <FontAwesomeIcon icon="dollar-sign" className="mr-1 md:mr-2" />
                 {rate.selling_rate}
               </td>
             </tr>
