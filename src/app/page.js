@@ -26,11 +26,11 @@ export default function HomePage() {
         return rateDate === formattedDate;
     });
 
-    const currencies = ['USD', 'GBP', 'EUR', 'AED', 'CAD']; // Example currencies
+    const currencies = ['USD', 'GBP', 'EUR', 'AED', 'SAR' , 'CNY', 'CHF', 'CAD'];
 
     return (
-        <div className="container mx-auto mt-20 ">
-            <div className="mb-8 -z-0">
+        <div className="container mx-auto mt-8 md:mt-20 ">
+            <div className="mb-2 -z-0">
                 <div className="flex items-center justify-end space-x-4 bg-none p-4 rounded-lg">
                     <DatePicker
                         selected={selectedDate}
