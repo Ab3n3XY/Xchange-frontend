@@ -9,10 +9,26 @@ const CurrencyTable = ({ currency, rates = [] }) => {
   const abbreviateBankName = (name) => {
     // Map full bank names to abbreviations
     const bankAbbreviations = {
-      'Commercial Bank of Ethiopia': 'CBE',
-      'Bank of Abyssinia': 'BOA',
-      'Dashen Bank': 'DB',
-      // Add other bank name mappings here
+        'Commercial Bank of Ethiopia':'CBE',
+        'Awash International Bank':'AIB',
+        'Bank of Abyssinia':'BOA',
+        'Dashen Bank':'DSH',
+        'Cooperative Bank of Oromia':'CBO',
+        'Hibret Bank':'HBT',
+        'Oromia International Bank':'OIB',
+        'Nib International Bank':'NIB',
+        'Abay Bank':'ABY',
+        'Zemen Bank':'ZEM',
+        'Berhan International Bank':'BIB',
+        'Bunna International Bank':'BII',
+        'Global Bank Ethiopia':'GBE',
+        'Enat Bank':'ENT',
+        'Lion International Bank':'LIB',
+        'Wegagen Bank':'WEG',
+        'Development Bank of Ethiopia':'DBE',
+        'ZamZam Bank':'ZZM',
+        'Hijra Bank':'HJR',
+        'Siinqee Bank':'SIN',
     };
     return bankAbbreviations[name] || name; // Return abbreviation or full name if not found
   };
