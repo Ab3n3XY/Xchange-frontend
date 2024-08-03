@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Flag from 'react-flagkit';
 
 const CurrencyTable = ({ currency, rates = [] }) => {
-  const sortedRates = Array.isArray(rates) ? [...rates].sort((a, b) => b.buying_rate - a.buying_rate) : [];
+  const [sortCriterion, setSortCriterion] = useState('buying'); // 'buying' or 'selling'
+  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
+
+  const sortedRates = [...rates].sort((a, b) => {
+    if (sortCriterion === 'buying') {
+      return sortOrder === 'asc' ? a.buying_rate - b.buying_rate : b.buying_rate - a.buying_rate;
+    } else {
+      return sortOrder === 'asc' ? a.selling_rate - b.selling_rate : b.selling_rate - a.selling_rate;
+    }
+  });
 
   const abbreviateBankName = (name) => {
     const bankAbbreviations = {
@@ -31,6 +40,15 @@ const CurrencyTable = ({ currency, rates = [] }) => {
     return bankAbbreviations[name] || name;
   };
 
+  const handleSort = (criterion) => {
+    if (sortCriterion === criterion) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortCriterion(criterion);
+      setSortOrder('desc');
+    }
+  };
+
   return (
     <div className="w-full p-2 md:p-4 mx-2 bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
       <div className="flex items-center mb-2 md:mb-4">
@@ -41,8 +59,32 @@ const CurrencyTable = ({ currency, rates = [] }) => {
         <thead>
           <tr className="bg-gray-700 text-xs md:text-base">
             <th className="px-1 py-1 md:px-4 md:py-2">Bank</th>
-            <th className="px-1 py-1 md:px-4 md:py-2">Buying</th>
-            <th className="px-1 py-1 md:px-4 md:py-2">Selling</th>
+            <th className="px-1 py-1 md:px-4 md:py-2">
+              <button onClick={() => handleSort('buying')} className="font-bold text-gray-300 focus:outline-none">
+                {sortCriterion === 'buying' ? (
+                  sortOrder === 'asc' ? (
+                    '↑'
+                  ) : (
+                    '↓'
+                  )
+                ) : (
+                  '↑'
+                )}
+              </button> Buying
+            </th>
+            <th className="px-1 py-1 md:px-4 md:py-2">
+              <button onClick={() => handleSort('selling')} className="font-bold text-gray-300 focus:outline-none">
+                {sortCriterion === 'selling' ? (
+                  sortOrder === 'asc' ? (
+                    '↑'
+                  ) : (
+                   '↓'
+                  )
+                ) : (
+                  '↑'
+                )}
+              </button> Selling
+            </th>
           </tr>
         </thead>
         <tbody>
