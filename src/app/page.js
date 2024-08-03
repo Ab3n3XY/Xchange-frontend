@@ -12,24 +12,31 @@ export default function HomePage() {
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     useEffect(() => {
-        fetchExchangeRates().then(response => {
-            setExchangeRates(response.data);
-        }).catch(error => {
-            console.error('Error fetching exchange rates:', error);
-        });
-    }, []);
+        const fetchRates = async () => {
+            try {
+                const formattedDate = selectedDate.toISOString().split('T')[0];
+                const response = await fetchExchangeRates(formattedDate);
+                console.log('Fetched exchange rates:', response.data);
+                setExchangeRates(response.data);
+            } catch (error) {
+                console.error('Error fetching exchange rates:', error);
+            }
+        };
+
+        fetchRates();
+    }, [selectedDate]); // Depend on selectedDate
 
     const formattedDate = selectedDate.toISOString().split('T')[0];
 
     const filteredRates = exchangeRates.filter(rate => {
         const rateDate = new Date(rate.date).toISOString().split('T')[0];
-        return rateDate === formattedDate;
+        return rateDate <= formattedDate; // Include rates up to and including the selected date
     });
 
-    const currencies = ['USD', 'GBP', 'EUR', 'AED', 'SAR' , 'CNY', 'CHF', 'CAD'];
+    const currencies = ['USD', 'GBP', 'EUR', 'AED', 'SAR', 'CNY', 'CHF', 'CAD'];
 
     return (
-        <div className="container mx-auto mt-8 md:mt-20 ">
+        <div className="container mx-auto mt-8 md:mt-20">
             <div className="mb-2 -z-0">
                 <div className="flex items-center justify-end space-x-4 bg-none p-4 rounded-lg">
                     <DatePicker
