@@ -16,7 +16,6 @@ export default function HomePage() {
             try {
                 const formattedDate = selectedDate.toISOString().split('T')[0];
                 const response = await fetchExchangeRates(formattedDate);
-                console.log('Fetched exchange rates:', response.data);
                 setExchangeRates(response.data);
             } catch (error) {
                 console.error('Error fetching exchange rates:', error);
@@ -51,7 +50,7 @@ export default function HomePage() {
                 {currencies.map(currency => {
                     const ratesForCurrency = filteredRates.filter(rate => rate.currency === currency);
                     return (
-                        <CurrencyTable key={currency} currency={currency} rates={ratesForCurrency} />
+                        <CurrencyTable key={currency} currency={currency} rates={ratesForCurrency} selectedDate={selectedDate} />
                     );
                 })}
             </div>
