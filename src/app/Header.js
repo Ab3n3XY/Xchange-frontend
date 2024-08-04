@@ -41,9 +41,9 @@ const Header = () => {
       <nav className="container mx-auto flex justify-between items-center flex-wrap">
         <Link href="/">
           <div className="flex items-center cursor-pointer hover:opacity-80">
-            <img src="logo.jpeg" alt="Logo" className="h-12 w-12 md:h-24 md:w-24 rounded-full" />
+            <img src="logo.png" alt="Logo" className="h-12 w-14 md:h-20 md:w-24 rounded-full opacity-80" />
             <div className="text-start ml-4">
-              <span className="font-bold text-xl md:text-3xl text-fourth block letter-spacing-wider">Ethio X-change</span>
+              <span className="font-bold text-xl md:text-3xl text-fourth block letter-spacing-wider">EthioForex</span>
             </div>
           </div>
         </Link>
@@ -54,7 +54,7 @@ const Header = () => {
             </svg>
           </button>
         </div>
-        <div className={`w-full md:flex md:items-center md:w-auto ${menuOpen ? 'block' : 'hidden'}`}>
+        <div className={`w-full font-bold md:flex md:items-center md:w-auto ${menuOpen ? 'block' : 'hidden'}`}>
           <div className="bg-primary md:bg-transparent md:flex md:space-x-4 rounded-lg p-4 md:p-0">
             {navLinks.map(({ path, label }) => (
               <Link key={path} href={path}>

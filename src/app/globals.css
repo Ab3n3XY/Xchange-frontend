@@ -30,4 +30,22 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* New utility for improving layout shifts */
+  .table-container {
+    min-height: 600px; /* Maintain minimum height for table containers */
+  }
+}
+
+/* Additional optimization to ensure smooth transitions */
+table {
+  border-collapse: collapse; /* Avoids double borders and improves performance */
+}
+
+th, td {
+  text-align: left; /* Ensure text alignment is consistent */
+}
+
+button {
+  cursor: pointer; /* Improve button accessibility and UX */
 }
