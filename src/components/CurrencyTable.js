@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Flag from 'react-flagkit';
 
 const CurrencyTable = ({ currency, rates = [] }) => {
@@ -8,7 +8,6 @@ const CurrencyTable = ({ currency, rates = [] }) => {
   const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
   const [visibleBanks, setVisibleBanks] = useState(5);
   
-
   const sortedRates = [...rates].sort((a, b) => {
     const spreadA = ((a.selling_rate - a.buying_rate) / a.buying_rate) * 100;
     const spreadB = ((b.selling_rate - b.buying_rate) / b.buying_rate )* 100;

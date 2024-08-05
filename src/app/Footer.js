@@ -1,12 +1,12 @@
 const Footer = () => {
     return (
-      <footer className="bg-gray-900 text-white p-4 z-50 opacity-90">
+      <footer className="text-gray-400 bg-gray-900 p-4 z-50 ">
           <div className="text-right">
-            <p className="opacity-40 text-sm md:text-base">
-              &copy; {new Date().getFullYear()} Ethio X-change | Designed by{' '}
+            <p className=" text-sm md:text-base">
+              &copy; {new Date().getFullYear()} EthioForex | Created by{' '}
               <a
                 href="https://www.abenxy.xyz/"
-                className="text-white hover:opacity-50 p-2 border-none text-sm md:text-base"
+                className="font-semibold hover:text-white border-none text-sm md:text-base pr-4"
               >
                 Ab3nXY
               </a>

@@ -10,6 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 export default function HomePage() {
     const [exchangeRates, setExchangeRates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const [visibleBanks, setVisibleBanks] = useState(5);
 
     useEffect(() => {
         const fetchRates = async () => {
@@ -22,7 +23,7 @@ export default function HomePage() {
                 console.error('Error fetching exchange rates:', error);
             }
         };
-
+        setVisibleBanks(5);
         fetchRates();
     }, [selectedDate]); // Depend on selectedDate
 
@@ -34,9 +35,9 @@ export default function HomePage() {
     });
 
     const currencies = ['USD', 'GBP', 'EUR', 'AED', 'SAR', 'CNY', 'CHF', 'CAD'];
-
+    const today = new Date();
     return (
-        <div className="container mx-auto mt-8 md:mt-20">
+        <div className="container mx-auto mt-8 md:mt-20 z-1">
             <div className="mb-2 -z-0">
                 <div className="flex items-center justify-end space-x-4 bg-none p-4 rounded-lg">
                     <DatePicker
@@ -44,6 +45,7 @@ export default function HomePage() {
                         onChange={date => setSelectedDate(date)}
                         dateFormat="MMMM d, yyyy"
                         className="p-2 border border-gray-600 rounded bg-gray-900 text-white"
+                        maxDate={today}
                     />
                 </div>
             </div>
