@@ -51,7 +51,7 @@ const Contact = ({ closePopup }) => {
   };
 
   return (
-    <div className="font-sans fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-gray-900 bg-opacity-90 w-full h-full flex items-center justify-center overflow-y-auto">
+    <div className="font-sans fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 bg-gray-900 bg-opacity-90 w-full h-full flex items-center justify-center overflow-y-auto">
       <div className="p-4 sm:p-8 rounded-lg shadow-lg h-auto w-full max-w-sm sm:max-w-md relative bg-gray-800">
         <form name="contact" className="bg-gray-900 p-4 text-white rounded-md text-sm" method="POST" data-netlify="true" onSubmit={handleFormSubmit}>
           <input type="hidden" name="form-name" value="contact" />

@@ -1,29 +1,33 @@
 "use client";
 
-import React, { useState } from 'react'; 
-import { Helmet} from 'react-helmet-async';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const aboutUsData = {
-    title: 'EthioForeX | About Us',
-    description: 'Discover real-time exchange rates with EthioForeX. Our platform provides up-to-date information on USD exchange rates across top Ethiopian banks, featuring an intuitive interface and customizable date ranges to suit your needs.'
-  };
-  
-  export default function AboutUs() {
-  
-    return (
-      <main className="mt-12 font-sans p-4 sm:p-10 bg-black">
-        <Helmet>
-          <title>{aboutUsData.title}</title>
-          <meta name="description" content={aboutUsData.description} />
-        </Helmet>
-      <h1 className="text-3xl sm:text-2xl font-bold text-primary text-center">About Us</h1>
-      <div className="max-w-5xl mx-auto ">
-        <section className="px-20 items-center">
-            <p className="mt-4 text-lg sm:text-md text-black-700">
-            At EthioForeX, we are a passionate team of web developers committed to enhancing financial transparency and understanding within Ethiopia. Our mission is to provide real-time exchange rate data from leading Ethiopian banks, helping individuals and businesses stay informed about currency fluctuations. We believe that accessible, accurate data is crucial for making well-informed decisions, whether you're managing personal finances or running a business.
-            We also recognize the value of our platform for economists and policymakers who rely on current economic data to analyze trends and suggest effective policies. By offering up-to-date exchange rate information, we aim to contribute to a more informed and strategic approach to economic planning in Ethiopia. Our goal is to empower users with the tools they need to navigate the financial landscape and drive positive change in our country's economy.
-            </p>
-        </section>
+  title: "EthioForeX | About Us",
+  description: "Discover real-time exchange rates with EthioForeX. Our platform provides up-to-date information on USD exchange rates across top Ethiopian banks, featuring an intuitive interface and customizable date ranges to suit your needs."
+};
+
+export default function AboutUs() {
+  return (
+    <main className="flex flex-col bg-gray-700 mt-4 md:mt-14 p-4 md:p-20 -z-1">
+      <Helmet>
+        <title>{aboutUsData.title}</title>
+        <meta name="description" content={aboutUsData.description} />
+      </Helmet>
+      <h1 className="text-3xl sm:text-4xl font-bold text-primary text-center">About Us</h1>
+      <div className="flex-grow px-4 sm:px-8">
+        <p className="mt-8 text-md sm:text-lg text-gray-300">
+          At EthioForeX, we are dedicated to bridging the gap between individuals and businesses and the complex world of finance. By providing real-time, accurate, and comprehensive exchange rate data from Ethiopia&apos;s leading banks, we empower our users to make informed financial decisions with confidence.
+
+          Our platform serves as a vital resource for a diverse audience. From everyday citizens managing personal finances to entrepreneurs navigating the complexities of international trade, EthioForeX offers the essential data needed to thrive in today&apos;s dynamic economic landscape. Economists and policymakers can leverage our platform to gain valuable insights into currency fluctuations, enabling them to develop data-driven strategies for economic growth and stability.
+
+          We believe that financial literacy is key to economic empowerment. Through our user-friendly platform and commitment to data accuracy, we strive to foster a more financially literate society. EthioForeX is more than just an exchange rate platform; it&apos;s a tool for economic progress, contributing to a stronger and more prosperous Ethiopia.
+
+          By choosing EthioForeX, you&apos;re not just accessing data; you&apos;re investing in a better financial future for yourself and your community.
+
+          Join us in our mission to build a financially empowered Ethiopia.
+        </p>
       </div>
     </main>
   );

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Contact from './Contact';
+import Image from 'next/image';
 
 const Header = () => {
   const router = useRouter();
@@ -44,7 +45,7 @@ const Header = () => {
       <nav className="container mx-auto flex justify-between items-center flex-wrap">
         <Link href="/">
           <div className="flex items-center cursor-pointer hover:opacity-80">
-            <img src="logo.png" alt="Logo" className="h-12 w-14 md:h-20 md:w-24 rounded-full opacity-80" />
+            <Image src="/logo.png" alt="Logo" width={100} height={100} className="h-12 w-14 md:h-20 md:w-24 rounded-full opacity-80" />
             <div className="text-start ml-4">
               <span className="font-bold text-xl md:text-3xl text-fourth block letter-spacing-wider">EthioForex</span>
             </div>

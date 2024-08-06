@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { fetchExchangeRates } from '../../services/api';
-import Flag from 'react-flagkit';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useEffect, useState } from "react";
+import { fetchExchangeRates } from "../../services/api";
+import Flag from "react-flagkit";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ExchangeRateTable = () => {
   const [exchangeRates, setExchangeRates] = useState([]);
@@ -14,11 +14,11 @@ const ExchangeRateTable = () => {
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        const formattedDate = selectedDate.toISOString().split('T')[0];
+        const formattedDate = selectedDate.toISOString().split("T")[0];
         const response = await fetchExchangeRates(formattedDate);
         setExchangeRates(response.data);
       } catch (error) {
-        console.error('Error fetching exchange rates:', error);
+        console.error("Error fetching exchange rates:", error);
       }
     };
 
@@ -26,16 +26,16 @@ const ExchangeRateTable = () => {
   }, [selectedDate]);
 
   const countryCodes = {
-    USD: 'US', EUR: 'EU', GBP: 'GB', CHF: 'CH', SEK: 'SE', NOK: 'NO', DKK: 'DK', DJF: 'DJ', JPY: 'JP', CAD: 'CA',
-    SAR: 'SA', AED: 'AE', XAF: 'CF', INR: 'IN', KES: 'KE', AUD: 'AU', SDR: 'XDR', ZAR: 'ZA', CNY: 'CN', KWD: 'KW'
+    USD: "US", EUR: "EU", GBP: "GB", CHF: "CH", SEK: "SE", NOK: "NO", DKK: "DK", DJF: "DJ", JPY: "JP", CAD: "CA",
+    SAR: "SA", AED: "AE", XAF: "CF", INR: "IN", KES: "KE", AUD: "AU", SDR: "XDR", ZAR: "ZA", CNY: "CN", KWD: "KW"
   };
 
-  const formattedDate = selectedDate.toISOString().split('T')[0];
+  const formattedDate = selectedDate.toISOString().split("T")[0];
 
   const getClosestAvailableRates = (rates, date) => {
-    const availableDates = [...new Set(rates.map(rate => new Date(rate.date).toISOString().split('T')[0]))];
+    const availableDates = [...new Set(rates.map(rate => new Date(rate.date).toISOString().split("T")[0]))];
     const closestDate = availableDates.filter(d => d <= date).sort((a, b) => new Date(b) - new Date(a))[0];
-    return rates.filter(rate => new Date(rate.date).toISOString().split('T')[0] === closestDate);
+    return rates.filter(rate => new Date(rate.date).toISOString().split("T")[0] === closestDate);
   };
 
   const filteredRates = getClosestAvailableRates(exchangeRates, formattedDate);
@@ -64,7 +64,7 @@ const ExchangeRateTable = () => {
   };
 
   const orderCurrencies = (rates) => {
-    const priorityCurrencies = ['USD', 'GBP', 'EUR', 'CHF', 'CAD', 'AED', 'SAR', 'CNY'];
+    const priorityCurrencies = ["USD", "GBP", "EUR", "CHF", "CAD", "AED", "SAR", "CNY"];
     return rates.sort((a, b) => {
       if (priorityCurrencies.includes(a.currency) && priorityCurrencies.includes(b.currency)) {
         return priorityCurrencies.indexOf(a.currency) - priorityCurrencies.indexOf(b.currency);
@@ -80,29 +80,29 @@ const ExchangeRateTable = () => {
 
   const abbreviateBankName = (name) => {
     const bankAbbreviations = {
-        'Commercial Bank of Ethiopia':'CBE',
-        'Awash International Bank':'AIB',
-        'Bank of Abyssinia':'BOA',
-        'Dashen Bank':'DSH',
-        'Cooperative Bank of Oromia':'CBO',
-        'Hibret Bank':'HBT',
-        'Oromia International Bank':'OIB',
-        'Nib International Bank':'NIB',
-        'Abay Bank':'ABY',
-        'Zemen Bank':'ZEM',
-        'Berhan International Bank':'BIB',
-        'Bunna International Bank':'BII',
-        'Global Bank Ethiopia':'GBE',
-        'Enat Bank':'ENT',
-        'Lion International Bank':'LIB',
-        'Wegagen Bank':'WEG',
-        'Development Bank of Ethiopia':'DBE',
-        'ZamZam Bank':'ZZM',
-        'Hijra Bank':'HJR',
-        'Siinqee Bank':'SIN',
-        'Gadaa Bank':'GDB',
-        'Amhara Bank':'AMB',
-        'Tsehay Bank':'TSB',
+        "Commercial Bank of Ethiopia":"CBE",
+        "Awash International Bank":"AIB",
+        "Bank of Abyssinia":"BOA",
+        "Dashen Bank":"DSH",
+        "Cooperative Bank of Oromia":"CBO",
+        "Hibret Bank":"HBT",
+        "Oromia International Bank":"OIB",
+        "Nib International Bank":"NIB",
+        "Abay Bank":"ABY",
+        "Zemen Bank":"ZEM",
+        "Berhan International Bank":"BIB",
+        "Bunna International Bank":"BII",
+        "Global Bank Ethiopia":"GBE",
+        "Enat Bank":"ENT",
+        "Lion International Bank":"LIB",
+        "Wegagen Bank":"WEG",
+        "Development Bank of Ethiopia":"DBE",
+        "ZamZam Bank":"ZZM",
+        "Hijra Bank":"HJR",
+        "Siinqee Bank":"SIN",
+        "Gadaa Bank":"GDB",
+        "Amhara Bank":"AMB",
+        "Tsehay Bank":"TSB",
     };
     return bankAbbreviations[name] || name;
   };
@@ -146,7 +146,7 @@ const ExchangeRateTable = () => {
                       .map(rate => (
                       <tr key={rate.id} className="border-b hover:bg-gray-600 transition duration-300">
                         <td className="px-2 py-1 flex items-center">
-                          <Flag country={countryCodes[rate.currency]} className="mr-1 md:mr-2" style={{ width: '16px', height: '12px' }} />
+                          <Flag country={countryCodes[rate.currency]} className="mr-1 md:mr-2" style={{ width: "16px", height: "12px" }} />
                           {rate.currency}
                         </td>
                         <td className="px-2 py-1 text-right text-green-400">
