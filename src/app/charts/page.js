@@ -9,6 +9,8 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScal
 
 const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
   const [rates, setRates] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.matchMedia("(max-width: 768px)").matches);
+
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
@@ -23,6 +25,14 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
     fetchExchangeRates();
   }, [currency, startDate, today]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   // Helper function to generate an array of dates between two dates
   const generateDateRange = (start, end) => {
     const startDate = new Date(start);
@@ -83,8 +93,8 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
         backgroundColor: 'rgba(0, 0, 0, 0)',
         fill: false,
         spanGaps: true,
-        borderWidth: 2, // Set line thickness
-        lineTension: 0.3, // Make lines smoother
+        borderWidth: isMobile ? 1 : 2, // Thinner lines for mobile
+        lineTension: isMobile ? 0.1 : 0.3, // Smoother lines for desktop
       };
     })
   };
@@ -93,13 +103,21 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'bottom',
+        position: 'left',
         labels: {
           color: 'rgba(255, 255, 255, 0.8)',
+          font: {
+            size: isMobile ? 8 : 12, // Smaller font size for mobile
+            family: 'Arial, sans-serif', // Font family
+            weight: 'bold', // Font weight
+          },
+          boxWidth: isMobile ? 10 : 20, // Width of the legend box
+          boxHeight: isMobile ? 10 : 10, // Height of the legend box
+          boxBorderColor: 'rgba(255, 255, 255, 0.8)', // Border color of the legend box
+          boxBorderWidth: 4, // Border width of the legend box
           generateLabels: (chart) => {
             const defaultLabels = ChartJS.defaults.plugins.legend.labels.generateLabels(chart);
-
-            // Map through default labels and modify them
+  
             return defaultLabels.map(label => {
               const bankNameMap = {
                 'Commercial Bank of Ethiopia': 'CBE',
@@ -108,15 +126,11 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
                 'Gadaa Bank': 'GDB',
                 'Dashen Bank': 'DSH'
               };
-
-              // Update label text with short names
+  
               label.text = bankNameMap[label.text] || label.text;
               return label;
             });
           },
-          font: {
-            size: 12
-          }
         }
       },
       tooltip: {
@@ -128,7 +142,10 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
     scales: {
       x: {
         ticks: {
-          color: 'rgba(255, 255, 255, 0.8)'
+          color: 'rgba(255, 255, 255, 0.8)',
+          font: {
+            size: isMobile ? 6 : 10, // Adjust size for mobile
+          }
         },
         grid: {
           color: 'rgba(255, 255, 255, 0.2)'
@@ -136,7 +153,10 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
       },
       y: {
         ticks: {
-          color: 'rgba(255, 255, 255, 0.8)'
+          color: 'rgba(255, 255, 255, 0.8)',
+          font: {
+            size: isMobile ? 6 : 10, // Adjust size for mobile
+          }
         },
         grid: {
           color: 'rgba(255, 255, 255, 0.2)'
@@ -145,12 +165,16 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
       }
     }
   };
+  
 
   return (
-    <div className="w-full p-4 md:p-6 bg-gray-800 rounded-lg shadow-lg mt-8">
-      <h2 className="text-lg md:text-2xl font-bold text-teal-400 mb-4">{currency} Exchange Rates</h2>
-      <Line data={chartData} options={chartOptions} />
-    </div>
+<div className="w-full p-4 md:p-6 bg-gray-800 rounded-lg shadow-lg mt-8">
+  <h2 className="text-lg md:text-2xl font-bold text-teal-400 mb-4 text-center">{currency} Exchange Rates</h2>
+  <div className="w-full h-60 md:h-80">
+    <Line data={chartData} options={chartOptions} />
+  </div>
+</div>
+
   );
 };
 
@@ -169,19 +193,19 @@ const TopExchangeRatesGraph = () => {
   return (
 
 <div className="flex flex-col md:flex-row flex-wrap justify-center mt-5">
-<div className="w-full md:w-1/2 p-4">
+<div className="w-full md:w-1/2 p-6">
   {/* TopUSDExchangeRatesGraph for USD */}
   <ExchangeRatesGraph currency="USD" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>
-<div className="w-full md:w-1/2 p-4">
+<div className="w-full md:w-1/2 p-6">
   {/* TopUSDExchangeRatesGraph for EUR */}
   <ExchangeRatesGraph currency="EUR" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>
-<div className="w-full md:w-1/2 p-4">
+<div className="w-full md:w-1/2 p-6">
   {/* TopUSDExchangeRatesGraph for GBP */}
   <ExchangeRatesGraph currency="GBP" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>
-<div className="w-full md:w-1/2 p-4">
+<div className="w-full md:w-1/2 p-6">
   {/* TopUSDExchangeRatesGraph for GBP */}
   <ExchangeRatesGraph currency="AED" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>

@@ -15,7 +15,7 @@ export default function AboutUs() {
         <title>{aboutUsData.title}</title>
         <meta name="description" content={aboutUsData.description} />
       </Helmet>
-      <h1 className="text-3xl sm:text-4xl font-bold text-primary text-center">About Us</h1>
+      <h1 className="text-3xl sm:text-4xl font-bold text-gray-300 text-center">About Us</h1>
       <div className="flex-grow px-4 sm:px-8">
         <p className="mt-8 text-md sm:text-lg text-gray-300">
           At EthioForeX, we are dedicated to bridging the gap between individuals and businesses and the complex world of finance. By providing real-time, accurate, and comprehensive exchange rate data from Ethiopia&apos;s leading banks, we empower our users to make informed financial decisions with confidence.
