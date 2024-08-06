@@ -9,7 +9,7 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScal
 
 const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
   const [rates, setRates] = useState([]);
-  const [isMobile, setIsMobile] = useState(window.matchMedia("(max-width: 768px)").matches);
+  const [isMobile, setIsMobile] = useState(false);
 
 
   useEffect(() => {
@@ -30,9 +30,11 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
       setIsMobile(window.matchMedia("(max-width: 768px)").matches);
     };
     
+    handleResize(); // Set initial state
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  
   // Helper function to generate an array of dates between two dates
   const generateDateRange = (start, end) => {
     const startDate = new Date(start);
