@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import CurrencyTable from '../components/CurrencyTable';
-import ExchangeRateList from '../components/ExchangeRateList';
 import { fetchExchangeRates } from '../services/api';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -17,7 +16,6 @@ export default function HomePage() {
             try {
                 const formattedDate = selectedDate.toISOString().split('T')[0];
                 const response = await fetchExchangeRates(formattedDate);
-                console.log('Fetched exchange rates:', response.data);
                 setExchangeRates(response.data);
             } catch (error) {
                 console.error('Error fetching exchange rates:', error);
@@ -46,6 +44,7 @@ export default function HomePage() {
                         dateFormat="MMMM d, yyyy"
                         className="p-2 border border-gray-600 rounded bg-gray-900 text-white"
                         maxDate={today}
+                        aria-label="Select Date"  // Added aria-label for accessibility
                     />
                 </div>
             </div>
@@ -57,7 +56,6 @@ export default function HomePage() {
                     );
                 })}
             </div>
-            <ExchangeRateList />
         </div>
     );
 }

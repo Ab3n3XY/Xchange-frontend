@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { fetchExchangeRates } from '../services/api';
+import { fetchExchangeRates } from '../../services/api';
 import Flag from 'react-flagkit';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -107,9 +107,9 @@ const ExchangeRateTable = () => {
     return bankAbbreviations[name] || name;
   };
   const today = new Date();
-  
+
   return (
-    <div className="container mx-auto mt-6 md:mt-10 p-2 md:p-4">
+    <div className="container mx-auto mt-6 md:mt-12 p-2 md:p-4">
       <div className="flex items-end justify-end mb-4 md:mb-6 z-0">
         <DatePicker
           selected={selectedDate}
@@ -118,6 +118,7 @@ const ExchangeRateTable = () => {
           className="p-2 border border-gray-600 rounded bg-gray-900 text-white"
           calendarClassName="bg-gray-900 text-white"
           maxDate={today}
+          aria-label="Select Date"  // Added aria-label for accessibility
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

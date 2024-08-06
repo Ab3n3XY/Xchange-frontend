@@ -33,7 +33,7 @@ body {
   
   /* New utility for improving layout shifts */
   .table-container {
-    min-height: 600px; /* Maintain minimum height for table containers */
+    min-height: 800px; /* Maintain minimum height for table containers */
   }
 }
 

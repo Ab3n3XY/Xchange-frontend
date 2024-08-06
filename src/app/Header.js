@@ -33,6 +33,9 @@ const Header = () => {
   };
 
   const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/banks', label: 'Banks' },
+    { path: '/charts', label: 'Charts' },
     { path: '/about', label: 'About Us' },
   ];
 
@@ -48,14 +51,14 @@ const Header = () => {
           </div>
         </Link>
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-gray-300 focus:outline-none">
+          <button onClick={toggleMenu} className="text-gray-300 focus:outline-none" aria-label="Open Menu">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
             </svg>
           </button>
         </div>
-        <div className={`w-full font-bold md:flex md:items-center md:w-auto ${menuOpen ? 'block' : 'hidden'}`}>
-          <div className="bg-primary md:bg-transparent md:flex md:space-x-4 rounded-lg p-4 md:p-0">
+        <div className={`w-full font-semibold md:flex md:items-center md:w-auto ${menuOpen ? 'block' : 'hidden'}`}>
+          <div className="bg-primary md:bg-transparent md:flex md:space-x-16 rounded-lg p-4 md:p-4 text-lg">
             {navLinks.map(({ path, label }) => (
               <Link key={path} href={path}>
                 <span
