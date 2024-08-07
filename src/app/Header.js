@@ -41,7 +41,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-gray-900 text-gray-300 p-2 font-sans fixed w-full top-0 z-1000 opacity-90">
+    <header className="bg-gray-900 text-gray-300 p-2 font-sans fixed w-full top-0 z-100 opacity-90">
       <nav className="container mx-auto flex justify-between items-center flex-wrap">
         <Link href="/">
           <div className="flex items-center cursor-pointer hover:opacity-80">

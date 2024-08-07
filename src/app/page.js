@@ -42,7 +42,7 @@ export default function HomePage() {
                         selected={selectedDate}
                         onChange={date => setSelectedDate(date)}
                         dateFormat="MMMM d, yyyy"
-                        className="p-2 border border-gray-600 rounded bg-gray-900 text-white"
+                        className="p-2 border border-gray-600 rounded bg-gray-900 text-white custom-datepicker"
                         maxDate={today}
                         aria-label="Select Date"  // Added aria-label for accessibility
                     />

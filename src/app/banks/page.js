@@ -78,6 +78,15 @@ const ExchangeRateTable = () => {
     });
   };
 
+  const getArrowIcon = (difference) => {
+    if (difference > 0) {
+      return <p className="text-red-500 text-lg font-bold">↑</p>;
+    } else if (difference < 0) {
+      return <p className="text-green-500 text-lg font-bold">↓</p>;
+    } else {
+      return <p className="text-gray-300 text-lg font-bold">-</p>;
+    }
+  };
   const abbreviateBankName = (name) => {
     const bankAbbreviations = {
         "Commercial Bank of Ethiopia":"CBE",
@@ -151,17 +160,29 @@ const ExchangeRateTable = () => {
                           <Flag country={countryCodes[rate.currency]} className="mr-1 md:mr-2" style={{ width: "16px", height: "12px" }} />
                           {rate.currency}
                         </td>
-                        <td className="px-2 py-1 text-right text-green-400">
-                          {rate.buying_rate}
+                        <td className="px-2 py-1 text-right text-green-300">
+                          <span className="flex justify-end items-center">
+                            {getArrowIcon(rate.buying_rate_difference)}
+                            <span className="ml-1">{rate.buying_rate}</span>
+                          </span>
                         </td>
-                        <td className="px-2 py-1 text-right text-red-400">
-                          {rate.selling_rate}
+                        <td className="px-2 py-1 text-right text-red-300">
+                          <span className="flex justify-end items-center">
+                            {getArrowIcon(rate.selling_rate_difference)}
+                            <span className="ml-1">{rate.selling_rate}</span>
+                          </span>
                         </td>
-                        <td className="px-2 py-1 text-right text-yellow-400">
-                          {rate.transactional_buying_rate}
+                        <td className="px-2 py-1 text-right text-yellow-300">
+                          <span className="flex justify-end items-center">
+                            {getArrowIcon(rate.transactional_buying_rate_difference)}
+                            <span className="ml-1">{rate.transactional_buying_rate}</span>
+                          </span>
                         </td>
-                        <td className="px-2 py-1 text-right text-blue-400">
-                          {rate.transactional_selling_rate}
+                        <td className="px-2 py-1 text-right text-blue-300">
+                          <span className="flex justify-end items-center">
+                            {getArrowIcon(rate.transactional_selling_rate_difference)}
+                            <span className="ml-1">{rate.transactional_selling_rate}</span>
+                          </span>
                         </td>
                       </tr>
                     ))}

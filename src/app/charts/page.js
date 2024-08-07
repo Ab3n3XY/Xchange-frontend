@@ -182,7 +182,7 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
   <h2 className="text-lg md:text-2xl font-bold text-teal-400 mb-4 flex items-center">
     <Flag
       country={countryCodes[currency]}
-      className="mr-2 w-8 h-6 sm:w-10 sm:h-8 md:w-12 md:h-10"
+      className="mr-2 w-6 h-4 sm:w-8 sm:h-6 md:w-10 md:h-8"
     />
     Exchange Rates
   </h2>

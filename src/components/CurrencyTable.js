@@ -9,6 +9,8 @@ const CurrencyTable = ({ currency, rates = [] }) => {
   const [visibleBanks, setVisibleBanks] = useState(5);
   const [displayedRates, setDisplayedRates] = useState([]);
 
+
+
   useEffect(() => {
     const sortedRates = sortRates(rates);
     setDisplayedRates(sortedRates.slice(0, visibleBanks));
@@ -28,6 +30,17 @@ const CurrencyTable = ({ currency, rates = [] }) => {
       }
     });
   };
+
+  // Function to determine the arrow type
+const getArrowIcon = (difference) => {
+  if (difference > 0) {
+    return <p className="text-red-500 text-lg font-bold">↑</p>;
+  } else if (difference < 0) {
+    return <p className="text-green-500 text-lg font-bold">↓</p>;
+  } else {
+    return <p className="text-gray-300 text-lg font-bold">-</p>;
+  }
+};
 
   const handleSort = (criterion) => {
     if (sortCriterion === criterion) {
@@ -80,7 +93,7 @@ const CurrencyTable = ({ currency, rates = [] }) => {
   };
 
   return (
-    <div className="w-full min-h-80 p-2 md:p-4 md:mx-4 bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
+    <div className="w-full min-h-50 md:min-h-70 p-2 md:p-4 md:mx-4 bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
       <div className="flex items-center mb-2 md:mb-4">
         <Flag country={countryCodes[currency]} className="mr-2 md:mr-3" style={{ width: '30px', height: '20px' }} />
         <h2 className="text-lg md:text-2xl font-bold text-purple-300">{currency}</h2>
@@ -101,11 +114,11 @@ const CurrencyTable = ({ currency, rates = [] }) => {
                   sortOrder === 'asc' ? ('↑') : ('↓')) : ('↑')}
               </button> Selling
             </th>
-            <th className="px-1 py-1 md:px-2 md:py-2 text-center">
+            <th className="px-1 py-1 md:px-1 md:py-2 text-center">
               <button onClick={() => handleSort('spread')} className="font-bold text-gray-300 focus:outline-none">
                 {sortCriterion === 'spread' ? (
                   sortOrder === 'asc' ? ('↑') : ('↓')) : ('↑')}
-              </button> Spread (%)
+              </button> Spread
             </th>
           </tr>
         </thead>
@@ -117,13 +130,20 @@ const CurrencyTable = ({ currency, rates = [] }) => {
                 <td className="px-1 py-1 md:px-4 md:py-2">
                   {abbreviateBankName(rate.bank.name)}
                 </td>
-                <td className="px-1 py-1 md:px-2 md:py-2 text-green-400">
-                  {rate.buying_rate}
+                <td className="px-1 py-1 md:px-2 md:py-2 text-green-300">
+                  <span className="flex items-center">
+                    {getArrowIcon(rate.buying_rate_difference)}
+                    <span className="ml-1">{rate.buying_rate}</span>
+                  </span>
                 </td>
-                <td className="px-1 py-1 md:px-2 md:py-2 text-red-400">
-                  {rate.selling_rate}
+                <td className="px-1 py-1 md:px-2 md:py-2 text-red-300">
+                  <span className="flex items-center">
+                    {getArrowIcon(rate.selling_rate_difference)}
+                    <span className="ml-1">{rate.selling_rate}</span>
+                  </span>
                 </td>
-                <td className="px-1 py-1 md:px-2 md:py-2 text-yellow-400 text-center">
+
+                <td className="px-1 py-1 md:px-2 md:py-2 text-yellow-300 text-center">
                   {spread.toFixed(1)}%
                 </td>
               </tr>

@@ -50,3 +50,10 @@ button {
   cursor: pointer; /* Improve button accessibility and UX */
 }
 
+.custom-datepicker {
+  z-index: 1 !important; /* Adjust the z-index value as needed */
+}
+
+.custom-datepicker .react-datepicker__tab-loop {
+  z-index: 1 !important; /* Ensure inner elements have the same z-index */
+}
