@@ -73,8 +73,8 @@ const CurrencyTable = ({ currency, rates = [] }) => {
       'Gadaa Bank': 'GDB',
       'Amhara Bank': 'AMB',
       'Tsehay Bank': 'TSB',
-      "Ethioblackmarket":"EBM",
-      "Binance":"BNC",
+      "Ethioblackmarket":"*EBM",
+      "Binance":"*BNC",
     };
     return bankAbbreviations[name] || name;
   };
@@ -156,6 +156,7 @@ const CurrencyTable = ({ currency, rates = [] }) => {
         </tbody>
       </table>
     </div>
+    
   );
 };
 

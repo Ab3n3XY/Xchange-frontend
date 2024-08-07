@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import { fetchExchangeRates2 } from '../../services/api'; // Ensure this import is correct
+import Flag from 'react-flagkit';
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale);
 
@@ -72,6 +73,9 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
         case 'Dashen Bank':
           borderColor = 'blue';
           break;
+        case 'Ethioblackmarket':
+          borderColor = 'black';
+          break;
         default:
           borderColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
       }
@@ -97,15 +101,18 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
         spanGaps: true,
         borderWidth: isMobile ? 1 : 2, // Thinner lines for mobile
         lineTension: isMobile ? 0.1 : 0.3, // Smoother lines for desktop
+        pointRadius: isMobile ? 1 : 2, // Adjust size for mobile
+        pointBackgroundColor: borderColor,
       };
     })
   };
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false, // Allow chart to expand fully on mobile
     plugins: {
       legend: {
-        position: 'left',
+        position: 'top',
         labels: {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
@@ -113,10 +120,10 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
             family: 'Arial, sans-serif', // Font family
             weight: 'bold', // Font weight
           },
-          boxWidth: isMobile ? 10 : 20, // Width of the legend box
-          boxHeight: isMobile ? 10 : 10, // Height of the legend box
+          boxWidth: isMobile ? 5 : 10, // Width of the legend box
+          boxHeight: isMobile ? 5 : 10, // Height of the legend box
           boxBorderColor: 'rgba(255, 255, 255, 0.8)', // Border color of the legend box
-          boxBorderWidth: 4, // Border width of the legend box
+          boxBorderWidth: 2, // Border width of the legend box
           generateLabels: (chart) => {
             const defaultLabels = ChartJS.defaults.plugins.legend.labels.generateLabels(chart);
   
@@ -126,7 +133,8 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
                 'Bank of Abyssinia': 'BOA',
                 'Awash International Bank': 'AIB',
                 'Gadaa Bank': 'GDB',
-                'Dashen Bank': 'DSH'
+                'Dashen Bank': 'DSH',
+                'Ethioblackmarket': '*EBM'
               };
   
               label.text = bankNameMap[label.text] || label.text;
@@ -171,7 +179,13 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
 
   return (
 <div className="w-full p-4 md:p-6 bg-gray-800 rounded-lg shadow-lg mt-8">
-  <h2 className="text-lg md:text-2xl font-bold text-teal-400 mb-4 text-center">{currency} Exchange Rates</h2>
+  <h2 className="text-lg md:text-2xl font-bold text-teal-400 mb-4 flex items-center">
+    <Flag
+      country={countryCodes[currency]}
+      className="mr-2 w-8 h-6 sm:w-10 sm:h-8 md:w-12 md:h-10"
+    />
+    Exchange Rates
+  </h2>
   <div className="w-full h-60 md:h-80">
     <Line data={chartData} options={chartOptions} />
   </div>
@@ -189,7 +203,8 @@ const TopExchangeRatesGraph = () => {
     'Awash International Bank',
     'Gadaa Bank',
     'Bank of Abyssinia',
-    'Dashen Bank'
+    'Dashen Bank',
+    "Ethioblackmarket",
   ];
 
   return (
@@ -211,9 +226,15 @@ const TopExchangeRatesGraph = () => {
   {/* TopUSDExchangeRatesGraph for GBP */}
   <ExchangeRatesGraph currency="AED" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>
+<div className="text-gray-400 text-sm md:text-md p-2">Note: * Indicates unofficial exchange rates obtained from online sources, not from licensed financial institutions.</div>
 </div>
 
   );
+};
+
+const countryCodes = {
+  USD: 'US', EUR: 'EU', GBP: 'GB', CHF: 'CH', SEK: 'SE', NOK: 'NO', DKK: 'DK', DJF: 'DJ', JPY: 'JP', CAD: 'CA',
+  SAR: 'SA', AED: 'AE', XAF: 'CF', INR: 'IN', KES: 'KE', AUD: 'AU', SDR: 'XDR', ZAR: 'ZA', CNY: 'CN', KWD: 'KW'
 };
 
 export default TopExchangeRatesGraph;
