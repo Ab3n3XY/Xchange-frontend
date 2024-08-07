@@ -73,12 +73,14 @@ const CurrencyTable = ({ currency, rates = [] }) => {
       'Gadaa Bank': 'GDB',
       'Amhara Bank': 'AMB',
       'Tsehay Bank': 'TSB',
+      "Ethioblackmarket":"EBM",
+      "Binance":"BNC",
     };
     return bankAbbreviations[name] || name;
   };
 
   return (
-    <div className="w-full p-2 md:p-4 md:mx-4 bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
+    <div className="w-full min-h-80 p-2 md:p-4 md:mx-4 bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
       <div className="flex items-center mb-2 md:mb-4">
         <Flag country={countryCodes[currency]} className="mr-2 md:mr-3" style={{ width: '30px', height: '20px' }} />
         <h2 className="text-lg md:text-2xl font-bold text-purple-300">{currency}</h2>
