@@ -86,8 +86,6 @@ const getArrowIcon = (difference) => {
       'Gadaa Bank': 'GDB',
       'Amhara Bank': 'AMB',
       'Tsehay Bank': 'TSB',
-      "Ethioblackmarket":"*EBM",
-      "Binance":"*BNC",
     };
     return bankAbbreviations[name] || name;
   };

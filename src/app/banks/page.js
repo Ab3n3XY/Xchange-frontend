@@ -112,8 +112,6 @@ const ExchangeRateTable = () => {
         "Gadaa Bank":"GDB",
         "Amhara Bank":"AMB",
         "Tsehay Bank":"TSB",
-        "Ethioblackmarket":"EBM",
-        "Binance":"BNC",
     };
     return bankAbbreviations[name] || name;
   };
@@ -216,7 +214,6 @@ const ExchangeRateTable = () => {
           <div className="text-gray-300">No rates available for the selected date.</div>
         )}
       </div>
-      <div className="text-gray-400 text-sm md:text-md p-2">Note: * Indicates unofficial exchange rates obtained from online sources, not from licensed financial institutions.</div>
       </div>
   );
 };

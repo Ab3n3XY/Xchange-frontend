@@ -134,7 +134,6 @@ const ExchangeRatesGraph = ({ currency, startDate, today, specifiedBanks }) => {
                 'Awash International Bank': 'AIB',
                 'Gadaa Bank': 'GDB',
                 'Dashen Bank': 'DSH',
-                'Ethioblackmarket': '*EBM'
               };
   
               label.text = bankNameMap[label.text] || label.text;
@@ -204,7 +203,6 @@ const TopExchangeRatesGraph = () => {
     'Gadaa Bank',
     'Bank of Abyssinia',
     'Dashen Bank',
-    "Ethioblackmarket",
   ];
 
   return (
@@ -223,10 +221,9 @@ const TopExchangeRatesGraph = () => {
   <ExchangeRatesGraph currency="GBP" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>
 <div className="w-full md:w-1/2 p-6">
-  {/* TopUSDExchangeRatesGraph for GBP */}
+  {/* TopUSDExchangeRatesGraph for AED */}
   <ExchangeRatesGraph currency="AED" startDate={startDate} today={today} specifiedBanks={specifiedBanks} />
 </div>
-<div className="text-gray-400 text-sm md:text-md p-2">Note: * Indicates unofficial exchange rates obtained from online sources, not from licensed financial institutions.</div>
 </div>
 
   );

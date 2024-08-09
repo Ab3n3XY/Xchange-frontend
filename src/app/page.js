@@ -56,7 +56,6 @@ export default function HomePage() {
                     );
                 })}
             </div>
-            <div className="text-gray-400 text-sm md:text-md p-2">Note: * Indicates unofficial exchange rates obtained from online sources, not from licensed financial institutions.</div>
         </div>
     );
 }
