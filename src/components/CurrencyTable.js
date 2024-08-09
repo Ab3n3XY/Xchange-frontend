@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Flag from 'react-flagkit';
 
 const CurrencyTable = ({ currency, rates = [] }) => {
-  const [sortCriterion, setSortCriterion] = useState('buying'); // 'buying' or 'selling'
-  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
+  const [sortCriterion, setSortCriterion] = useState('buying');
+  const [sortOrder, setSortOrder] = useState('desc');
   const [visibleBanks, setVisibleBanks] = useState(5);
   const [displayedRates, setDisplayedRates] = useState([]);
 
